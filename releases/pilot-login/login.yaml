@@ -1,0 +1,85 @@
+metadata:
+  module: 账号与认证
+  feature: 管理后台登录
+  owner: qa-owner
+  last_reviewed: "2026-07-17"
+  tags: [pilot, login]
+test_cases:
+  - id: TC_LOGIN_001
+    title: 使用正确凭据登录后台
+    description: 验证正常用户的核心登录路径和目标页面。
+    priority: P0
+    type: functional
+    preconditions:
+      - 已存在状态正常且未锁定的后台用户
+    steps:
+      - 打开管理后台登录页
+      - 输入已注册邮箱和正确密码
+      - 提交登录
+    expected_results:
+      - 浏览器进入管理后台首页
+      - 当前会话对应已登录用户
+    tags: [smoke, login]
+    auto: true
+  - id: TC_LOGIN_002
+    title: 邮箱为空时拒绝登录
+    description: 验证邮箱必填规则。
+    priority: P1
+    type: functional
+    preconditions:
+      - 已打开管理后台登录页
+    steps:
+      - 保持邮箱为空并输入任意密码
+      - 提交登录
+    expected_results:
+      - 页面显示邮箱为必填项的提示
+      - 浏览器仍停留在登录页且未建立登录会话
+    tags: [negative, validation]
+    auto: true
+  - id: TC_LOGIN_003
+    title: 密码为空时拒绝登录
+    description: 验证密码必填规则。
+    priority: P1
+    type: functional
+    preconditions:
+      - 已打开管理后台登录页
+    steps:
+      - 输入已注册邮箱并保持密码为空
+      - 提交登录
+    expected_results:
+      - 页面显示密码为必填项的提示
+      - 浏览器仍停留在登录页且未建立登录会话
+    tags: [negative, validation]
+    auto: true
+  - id: TC_LOGIN_004
+    title: 第五次密码错误后锁定账号
+    description: 验证连续错误边界、锁定状态和锁定期权限限制。
+    priority: P0
+    type: security
+    preconditions:
+      - 已存在状态正常且未锁定的后台用户
+      - 该用户已连续 4 次输入错误密码
+    steps:
+      - 使用该用户邮箱和错误密码提交第 5 次登录
+      - 在锁定后的 30 分钟内使用正确密码再次提交登录
+    expected_results:
+      - 第 5 次错误提交后账号进入锁定状态并拒绝登录
+      - 锁定期内使用正确密码仍被拒绝且未建立登录会话
+    tags: [boundary, state, security]
+    auto: true
+  - id: TC_LOGIN_005
+    title: 登录成功后记录审计日志
+    description: 验证登录状态与审计数据一致。
+    priority: P0
+    type: data-consistency
+    preconditions:
+      - 已存在状态正常且未锁定的后台用户
+      - 测试人员具备审计日志查询权限
+    steps:
+      - 使用正确邮箱和密码提交登录
+      - 查询本次登录对应的审计日志
+    expected_results:
+      - 审计日志新增一条本次登录记录
+      - 新增记录包含登录用户、登录时间和成功结果
+    tags: [audit, data-consistency]
+    auto: true

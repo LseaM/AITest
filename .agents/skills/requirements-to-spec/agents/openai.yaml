@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求结构化 Spec"
+  short_description: "将 PRD 和附件整理为可评审、可追踪的结构化 Spec"
+  default_prompt: "Use $requirements-to-spec to turn the requirement sources into an auditable structured Spec."

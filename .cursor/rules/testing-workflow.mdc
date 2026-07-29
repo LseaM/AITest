@@ -1,0 +1,14 @@
+---
+description: Apply the shared intelligent-testing workflow whenever requirements, Specs, test points, Casebook cases, traceability, or review notes are created or changed.
+globs:
+alwaysApply: true
+---
+
+# Shared intelligent-testing workflow
+
+- Read and obey `AGENTS.md`. It is the cross-tool source of truth for workflow gates, directories, stable IDs, and validation.
+- Reuse the project Skills under `.agents/skills/`; do not create Cursor-only copies.
+- Use `/requirements-to-spec`, `/spec-to-test-points`, and `/test-points-to-casebook` in Cursor Agent mode.
+- If a Skill is not present in the current chat, read its `.agents/skills/<skill-name>/SKILL.md` file explicitly before acting.
+- Never generate test points or formal cases from an unapproved Spec.
+- Preserve existing REQ, TP, and TC IDs, keep traceability in `traceability.yaml`, and run the repository validator before handoff.

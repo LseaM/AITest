@@ -1,0 +1,47 @@
+pilot:
+  samples:
+    - id: PILOT_SIMPLE
+      profile: 简单功能需求
+      status: ready
+      requirement_dir: docs/requirements/SPEC_LOGIN
+      case_dir: releases/pilot-login
+    - id: PILOT_STATEFUL
+      profile: 复杂状态流程需求
+      status: pending_source
+    - id: PILOT_HIGH_RISK
+      profile: 高风险业务需求
+      status: pending_source
+  variants:
+    - direct_codex
+    - structured_workflow
+metrics:
+  schema_pass_rate:
+    target: 1.0
+  trace_reference_valid_rate:
+    target: 1.0
+  atomic_requirement_coverage_rate:
+    target: 1.0
+    exemption_policy: 仅接受包含理由和评审人的人工豁免
+  p0_omissions:
+    target: 0
+  unsupported_high_risk_assumptions:
+    target: 0
+  duplicate_case_rate:
+    maximum: 0.05
+  directly_executable_case_rate:
+    minimum: 0.80
+  median_design_review_time_reduction:
+    minimum: 0.30
+record_per_run:
+  - sample_id
+  - variant
+  - started_at
+  - generated_at
+  - review_completed_at
+  - reviewer
+  - total_cases
+  - duplicate_cases
+  - directly_executable_cases
+  - p0_omissions
+  - unsupported_high_risk_assumptions
+  - reviewer_notes

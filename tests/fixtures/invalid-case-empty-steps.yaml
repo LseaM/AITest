@@ -1,0 +1,12 @@
+metadata:
+  module: 示例
+  feature: 空步骤
+  owner: qa
+  last_reviewed: "2026-07-17"
+test_cases:
+  - id: TC_INVALID_002
+    title: 用例没有执行步骤
+    priority: P1
+    type: functional
+    steps: []
+    expected_results: [页面显示具体结果]

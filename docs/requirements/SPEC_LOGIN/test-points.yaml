@@ -1,0 +1,40 @@
+metadata:
+  spec_id: SPEC_LOGIN
+  spec_version: "1.0"
+  generated_at: "2026-07-17"
+test_points:
+  - id: TP_LOGIN_001
+    requirement_ids: [REQ_LOGIN_001]
+    scenario: 正常用户使用正确邮箱和密码登录
+    category: normal
+    risk: high
+    priority: P0
+    design_basis: 核心登录主流程与页面跳转要求
+  - id: TP_LOGIN_002
+    requirement_ids: [REQ_LOGIN_002]
+    scenario: 邮箱为空时提交登录
+    category: negative
+    risk: medium
+    priority: P1
+    design_basis: 邮箱必填规则
+  - id: TP_LOGIN_003
+    requirement_ids: [REQ_LOGIN_002]
+    scenario: 密码为空时提交登录
+    category: negative
+    risk: medium
+    priority: P1
+    design_basis: 密码必填规则
+  - id: TP_LOGIN_004
+    requirement_ids: [REQ_LOGIN_003]
+    scenario: 连续第 5 次密码错误触发锁定且锁定期拒绝正确密码
+    category: state
+    risk: high
+    priority: P0
+    design_basis: 连续错误次数边界、锁定状态流转与权限限制
+  - id: TP_LOGIN_005
+    requirement_ids: [REQ_LOGIN_004]
+    scenario: 登录成功后产生包含必要字段的审计日志
+    category: data-consistency
+    risk: high
+    priority: P0
+    design_basis: 登录结果与审计记录必须保持一致

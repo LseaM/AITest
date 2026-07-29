@@ -1,0 +1,4 @@
+interface:
+  display_name: "测试点生成 Casebook 用例"
+  short_description: "将测试点转换为可校验的 Casebook YAML 测试用例"
+  default_prompt: "Use $test-points-to-casebook to generate Casebook YAML cases and a complete traceability matrix."

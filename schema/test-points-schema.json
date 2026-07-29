@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["metadata", "test_points"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["spec_id", "spec_version", "generated_at"],
+      "properties": {
+        "spec_id": {"type": "string", "pattern": "^SPEC_[A-Z0-9_]{3,}$"},
+        "spec_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"},
+        "generated_at": {"type": "string", "format": "date"}
+      },
+      "additionalProperties": false
+    },
+    "test_points": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "requirement_ids",
+          "scenario",
+          "category",
+          "risk",
+          "priority",
+          "design_basis"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^TP_[A-Z0-9_]{3,}_[0-9]{3}$"},
+          "requirement_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^REQ_[A-Z0-9_]{3,}_[0-9]{3}$"}
+          },
+          "scenario": {"type": "string", "minLength": 1},
+          "category": {
+            "type": "string",
+            "enum": ["normal", "negative", "boundary", "permission", "state", "data-consistency", "non-functional"]
+          },
+          "risk": {"type": "string", "enum": ["high", "medium", "low"]},
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2"]},
+          "design_basis": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

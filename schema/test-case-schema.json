@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["metadata", "test_cases"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["module", "feature", "owner", "last_reviewed"],
+      "properties": {
+        "module": {"type": "string"},
+        "feature": {"type": "string"},
+        "owner": {"type": "string"},
+        "last_reviewed": {"type": "string", "format": "date"},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "test_cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "steps", "expected_results", "priority", "type"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^TC_[A-Z0-9_]{3,}_[0-9]{3}$"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2"]},
+          "type": {
+            "type": "string",
+            "enum": ["functional", "ui", "security", "performance", "accessibility", "business", "other", "data-consistency"]
+          },
+          "preconditions": {"type": "array", "items": {"type": "string"}},
+          "steps": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "expected_results": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "auto": {"type": "boolean", "default": false}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

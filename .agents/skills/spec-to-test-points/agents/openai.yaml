@@ -1,0 +1,4 @@
+interface:
+  display_name: "Spec 生成测试点"
+  short_description: "从已审批的结构化 Spec 生成可追踪的风险覆盖测试点清单"
+  default_prompt: "Use $spec-to-test-points to generate traceable test points from an approved Spec."

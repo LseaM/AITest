@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["metadata", "mappings", "requirement_exemptions"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["spec_id", "spec_version", "case_release", "updated_at"],
+      "properties": {
+        "spec_id": {"type": "string", "pattern": "^SPEC_[A-Z0-9_]{3,}$"},
+        "spec_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"},
+        "case_release": {"type": "string", "minLength": 1},
+        "updated_at": {"type": "string", "format": "date"}
+      },
+      "additionalProperties": false
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirement_id", "test_point_id", "test_case_id"],
+        "properties": {
+          "requirement_id": {"type": "string", "pattern": "^REQ_[A-Z0-9_]{3,}_[0-9]{3}$"},
+          "test_point_id": {"type": "string", "pattern": "^TP_[A-Z0-9_]{3,}_[0-9]{3}$"},
+          "test_case_id": {"type": "string", "pattern": "^TC_[A-Z0-9_]{3,}_[0-9]{3}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "requirement_exemptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["requirement_id", "reason", "reviewer"],
+        "properties": {
+          "requirement_id": {"type": "string", "pattern": "^REQ_[A-Z0-9_]{3,}_[0-9]{3}$"},
+          "reason": {"type": "string", "minLength": 5},
+          "reviewer": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

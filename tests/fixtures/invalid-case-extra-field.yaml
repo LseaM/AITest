@@ -1,0 +1,13 @@
+metadata:
+  module: 示例
+  feature: 非法字段
+  owner: qa
+  last_reviewed: "2026-07-17"
+test_cases:
+  - id: TC_INVALID_001
+    title: 用例包含 Casebook 不支持的追踪字段
+    priority: P1
+    type: functional
+    steps: [执行操作]
+    expected_results: [页面显示具体结果]
+    requirement_ids: [REQ_INVALID_001]

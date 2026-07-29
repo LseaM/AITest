@@ -1,0 +1,10 @@
+metadata:
+  spec_id: SPEC_LOGIN
+  spec_version: "1.0"
+  case_release: pilot-login
+  updated_at: "2026-07-17"
+mappings:
+  - requirement_id: REQ_LOGIN_001
+    test_point_id: TP_LOGIN_001
+    test_case_id: TC_NOT_FOUND_999
+requirement_exemptions: []

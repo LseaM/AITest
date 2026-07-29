@@ -1,0 +1,5 @@
+package=casebook
+version=0.7.0
+upstream=https://github.com/SeldomQA/casebook
+main_commit=e58685d3e168ab30e0b98604a6e66e78d529207d
+verified_at=2026-07-17
